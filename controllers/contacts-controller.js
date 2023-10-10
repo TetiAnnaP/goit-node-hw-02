@@ -1,6 +1,6 @@
 import Contact from '../models/Contact.js';
 import ctrlWrapper from '../decorators/ctrlWrapper.js';
-// import { contactAddSchema } from '../routes/api/';
+
 import HttpError from '../helpers/HttpError.js';
 
 const getAll = async (req, res) => {
@@ -18,15 +18,6 @@ const getById = async (req, res) => {
 };
 
 const add = async (req, res) => {
-  // if (!Object.keys(req.body).length) {
-  //   throw HttpError(400, 'All fields are empty');
-  // }
-
-  // const { error } = contactAddSchema.validate(req.body);
-
-  // if (error) {
-  //   throw HttpError(400, error.message);
-  // }
   const result = await Contact.create(req.body);
   res.status(201).json(result);
 };
@@ -43,15 +34,6 @@ const deleteById = async (req, res) => {
 };
 
 const update = async (req, res) => {
-  // if (!Object.keys(req.body).length) {
-  //   throw HttpError(400, 'All fields are empty');
-  // }
-
-  // const { error } = contactAddSchema.validate(req.body);
-  // if (error) {
-  //   throw HttpError(400, error.message);
-  // }
-
   const { id } = req.params;
 
   const result = await Contact.findByIdAndUpdate(id, req.body, { new: true });
