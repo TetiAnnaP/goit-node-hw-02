@@ -5,14 +5,22 @@ import { validateBody } from '../../decorators/index.js';
 import { userSignupSchema, userSigninSchema } from '../../models/Users.js';
 
 const userSignUpValidate = validateBody(userSignupSchema);
+const userSignInValidate = validateBody(userSigninSchema);
 
 const authRouter = express.Router();
 
 authRouter.post(
   '/signup',
   isEmptyBody,
-  // userSignUpValidate,
+  userSignUpValidate,
   authController.signup
+);
+
+authRouter.post(
+  '/signin',
+  isEmptyBody,
+  userSignInValidate,
+  authController.signin
 );
 
 export default authRouter;
