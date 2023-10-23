@@ -12,4 +12,21 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({});
+const limits = {
+  fileSize: 5 * 1024 * 1024,
+};
+
+const fileFilter = (req, file, cb) => {
+  if (file.originalname.salit('.').pop() === 'exe') {
+    cb(new Error('File extention not allow'));
+  }
+  cb(null, true);
+};
+
+const upload = multer({
+  storage,
+  limits,
+  //fileFilter
+});
+
+export default upload;
